@@ -2,6 +2,13 @@ import sqlite3
 from colorama import Fore, init
 import time
 
+from os import system
+
+
+#Função para limpar cmd
+def cls():
+    system('cls')
+
 init(autoreset=True)
 
 #Criando tabela "user"
@@ -205,3 +212,23 @@ def inserir_testes(conexao):
     '''
     cursor.execute(sql)
     conexao.commit()
+
+
+def criar_tabela_servicos(conexao):
+    cursor = conexao.cursor()
+
+    #Criando tabela "servicos"
+    sql = '''CREATE TABLE IF NOT EXISTS servicos(
+            idcli INTEGER NOT NULL,
+            problema TEXT NOT NULL,
+            iduser INTEGER NOT NULL,
+            FOREIGN KEY (iduser) REFERENCES user (rowid),
+            data_de_abertura DATE NOT NULL,
+            solucao TEXT NOT NULL,
+            data_de_fechamento TEXT NOT NULL
+        );'''
+
+    #Executando o código SQL
+    cursor.execute(sql)
+    print(Fore.RED + "Tabela criada com sucesso!")
+

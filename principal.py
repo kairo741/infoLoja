@@ -13,6 +13,9 @@ conexao = sqlite3.connect("infoLoja.sqlite")
 
 # funcoes.update_usuario(conexao)
 # funcoes.listar_user(conexao)
+
+
+
 funcoes.excluir_usuario(conexao)
 
 
