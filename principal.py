@@ -6,14 +6,14 @@ conexao = sqlite3.connect("infoLoja.sqlite")
 
 
 
-
-funcoes.criarTabelaUser(conexao)
+# funcoes.criarTabelaUser(conexao)
 # funcoes.inserirUser(conexao)
 
+# funcoes.inserir_testes(conexao)
 
-
-
-funcoes.listar_usuario(conexao)
+# funcoes.update_usuario(conexao)
+# funcoes.listar_user(conexao)
+funcoes.excluir_usuario(conexao)
 
 
 
