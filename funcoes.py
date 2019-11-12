@@ -255,6 +255,6 @@ def login(conexao):
             print(Fore.LIGHTGREEN_EX + "Bem Vindo ao INFO LOJA {}!".format(lista[i][1]))   
             confirm = 1
     if(confirm == 0):
-        print("Senha ou Login incorreto(s)!")
+        print("Login ou Senha incorreto(s)!")
 
   
