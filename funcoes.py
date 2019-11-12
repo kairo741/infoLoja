@@ -1,5 +1,5 @@
 import sqlite3
-from colorama import Fore, init
+from colorama import Fore, init, Back
 import time
 
 from os import system
@@ -71,7 +71,7 @@ def listar_user(conexao):
     
     for i in lista:
         if(i[0] == usuario):
-            print(Fore.RED + '{} \t {}\t \t\t {} \t\t {}'.format(i[0], i[1], i[2], i[4]))
+            print(Back.RED + '{} \t {}\t \t\t {} \t\t {}'.format(i[0], i[1], i[2], i[4]))
         else:
             print('{} \t {}\t \t\t {} \t\t {}'.format(i[0], i[1], i[2], i[4]))
 
