@@ -249,10 +249,12 @@ def login(conexao):
 
     lista = cursor.fetchall()
 
-
+    confirm = 0
     for i in range (0, len(lista)):
         if(lista[i][2] == login and lista[i][3] == senha):
             print(Fore.LIGHTGREEN_EX + "Bem Vindo ao INFO LOJA {}!".format(lista[i][1]))   
-            
+            confirm = 1
+    if(confirm == 0):
+        print("Senha ou Login incorreto(s)!")
 
   
