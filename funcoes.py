@@ -65,11 +65,15 @@ def listar_user(conexao):
     cursor.execute(sql)
     #Atributo para retornar o resultado o Select
     lista = cursor.fetchall()
-
+    usuario = int(input("Insira o usuário específico que deseja ver: "))
     #Print dos atributos principais do usuário
-    print("ID\t Nome\t \t\t Login \t\t\t Cargo")
+    print("ID\t Nome\t \t\t Login \t\t Cargo")
+    
     for i in lista:
-        print('{} \t {}\t \t\t {} \t\t {}'.format(i[0], i[1], i[2], i[4]))
+        if(i[0] == usuario):
+            print(Fore.RED + '{} \t {}\t \t\t {} \t\t {}'.format(i[0], i[1], i[2], i[4]))
+        else:
+            print('{} \t {}\t \t\t {} \t\t {}'.format(i[0], i[1], i[2], i[4]))
 
 
 #Algoritmo para dar UPDATE em um usuário
