@@ -12,11 +12,11 @@ def criar_tabela_servicos(conexao):
     #Criando tabela "servicos"
     sql = '''CREATE TABLE IF NOT EXISTS servicos(
             idcli INTEGER NOT NULL,
-            problema TEXT NOT NULL,
             iduser INTEGER NOT NULL,
+            problema TEXT NOT NULL,            
             data_de_abertura DATE NOT NULL,
             solucao TEXT NOT NULL,
-            data_de_fechamento TEXT NOT NULL,
+            data_de_fechamento DATE NOT NULL,
             FOREIGN KEY (iduser) REFERENCES user (rowid),
             FOREIGN KEY (idcli) REFERENCES cliente (rowid)
 

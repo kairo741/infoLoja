@@ -34,7 +34,7 @@
     <column id="COL8" populated="true" UUID="3a0b5ffc-dd3e-462d-b07a-8e307840613d" autoIncrement="false" autoIncrementSequenceName="cliente_num_casa_seq" defaultValue="" name="num_casa" nullable="0" physicalName="num_casa" precision="150" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL9" populated="true" UUID="b60afbf1-b628-4b10-988d-d4a23dea941f" autoIncrement="false" autoIncrementSequenceName="cliente_complemento_seq" defaultValue="" name="complemento" nullable="0" physicalName="complemento" precision="150" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL9" populated="true" UUID="b60afbf1-b628-4b10-988d-d4a23dea941f" autoIncrement="false" autoIncrementSequenceName="cliente_complemento_seq" defaultValue="" name="complemento" nullable="1" physicalName="complemento" precision="150" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     <column id="COL10" populated="true" UUID="cd228aa5-268b-4bac-b4c4-587562272fcf" autoIncrement="false" autoIncrementSequenceName="cliente_cidade_seq" defaultValue="" name="cidade" nullable="0" physicalName="cidade" precision="150" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
@@ -92,10 +92,10 @@
     <column id="COL24" populated="true" UUID="74f6e488-06f1-4fe6-86b9-7f05dd1bcd04" autoIncrement="false" autoIncrementSequenceName="cliente_idcli_seq" defaultValue="" name="idcli" nullable="0" physicalName="idcli" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL25" populated="true" UUID="6c405bf0-9e40-4154-9e8b-1d210fd20a69" autoIncrement="false" autoIncrementSequenceName="servicos_problema_seq" defaultValue="" name="problema" nullable="0" physicalName="problema" precision="300" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL25" populated="true" UUID="4836a151-6b77-44f8-84a1-160192f3ae68" autoIncrement="false" autoIncrementSequenceName="user_iduser_seq" defaultValue="" name="iduser" nullable="0" physicalName="iduser" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL26" populated="true" UUID="4836a151-6b77-44f8-84a1-160192f3ae68" autoIncrement="false" autoIncrementSequenceName="user_iduser_seq" defaultValue="" name="iduser" nullable="0" physicalName="iduser" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL26" populated="true" UUID="6c405bf0-9e40-4154-9e8b-1d210fd20a69" autoIncrement="false" autoIncrementSequenceName="servicos_problema_seq" defaultValue="" name="problema" nullable="0" physicalName="problema" precision="300" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     <column id="COL27" populated="true" UUID="8168fa80-c2ea-401d-8e19-4c6c9a4f1849" autoIncrement="false" autoIncrementSequenceName="servicos_data_de_abertura_seq" defaultValue="" name="data_de_abertura" nullable="0" physicalName="data_de_abertura" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
@@ -123,14 +123,14 @@
     <column-mapping id="CMP33" populated="true" UUID="1706fb42-3c22-4788-94cc-2aa4858ab96f" fk-column-ref="COL24" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
    </relationship>
    <relationship id="REL34" populated="true" UUID="1e704817-d38c-4fac-bc93-1440ea7ab89f" deferrability="7" deleteRule="3" fk-table-ref="TAB22" fkCardinality="7" identifying="false" name="user_servicos_fk" physicalName="user_servicos_fk" pk-table-ref="TAB14" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP35" populated="true" UUID="d739fdee-f787-445b-aa59-2d1933e38ccd" fk-column-ref="COL26" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL15" />
+    <column-mapping id="CMP35" populated="true" UUID="d739fdee-f787-445b-aa59-2d1933e38ccd" fk-column-ref="COL25" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL15" />
    </relationship>
   </relationships>
  </target-database>
  <ddl-generator type="ca.sqlpower.architect.ddl.GenericDDLGenerator" allow-connection="true"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
- <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+ <play-pen zoom="1.0" viewportX="223" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
   <table-pane table-ref="TAB1" x="634" y="381" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB14" x="361" y="20" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB22" x="853" y="153" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
