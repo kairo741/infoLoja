@@ -1,4 +1,5 @@
 import funcoes
+import menus
 import sqlite3
 
 #Conexão ao Banco
