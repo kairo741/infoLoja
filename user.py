@@ -165,7 +165,7 @@ def excluir_usuario(conexao):
 
     if (excluir == 'S' or excluir == 's'):
         while(True):
-            confirmar = input("Insira a senha (atual) para alterar: ")
+            confirmar = input("Insira a senha para a exclusão: ")
             if(confirmar == lista[0][2]):
                 print(Fore.GREEN+"Excluindo", end='', flush=True)
                 for i in range(5):

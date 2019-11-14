@@ -22,9 +22,10 @@ def menu_usuario():
     ========= Controle de usuários =========""","""
     1. Cadastrar usuário
     2. Excluir usuário
-    3. Modificar atributo do usuário
-    4. Voltar
-    5. Sair""", Fore.CYAN + """
+    3. Alterar usuário
+    4. Listar usuários
+    5. Voltar
+    6. Sair""", Fore.CYAN + """
     ========================================""")
 
 def menu_os():
