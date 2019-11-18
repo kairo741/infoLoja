@@ -1,19 +1,18 @@
+#coding: utf-8
 import sqlite3
 from colorama import Fore, init, Back
 import time
 
-#Código para semrpe resetar a cor a cada print
+# Código para semrpe resetar a cor a cada print
 init(autoreset=True)
 
 
-
-
-#Criando tabela "user"
+# Criando tabela "user"
 def criarTabelaUser(conexao):
 
     cursor = conexao.cursor()
 
-    #Criando tabela "user"
+    # Criando tabela "user"
     sql = '''CREATE TABLE IF NOT EXISTS user(
             nome TEXT NOT NULL,
             login TEXT NOT NULL,
@@ -21,12 +20,12 @@ def criarTabelaUser(conexao):
             cargo TEXT NOT NULL
         );'''
 
-    #Executando o código SQL
+    # Executando o código SQL
     cursor.execute(sql)
     print(Fore.RED + "Tabela criada com sucesso!")
 
 
-#Inserindo dados na tabela "user"
+# Inserindo dados na tabela "user"
 def inserirUser(conexao):
     print("Inserindo usuário!")
     nome = input("Insira o nome do Usuário: ")
@@ -49,7 +48,7 @@ def inserirUser(conexao):
     print(Fore.RED + "Dados inseridos com sucesso!")
 
 
-#Função para ver e listar usuários
+# Função para ver e listar usuários
 def listar_user(conexao):
     cursor = conexao.cursor()
     sql = """
@@ -57,10 +56,10 @@ def listar_user(conexao):
     """
 
     cursor.execute(sql)
-    #Atributo para retornar o resultado o Select
+    # Atributo para retornar o resultado o Select
     lista = cursor.fetchall()
     usuario = int(input("Insira o usuário específico que deseja ver: "))
-    #Print dos atributos principais do usuário
+    # Print dos atributos principais do usuário
     print("ID\t Nome\t \t\t Login \t\t Cargo")
 
     for i in lista:
@@ -71,12 +70,12 @@ def listar_user(conexao):
             print('{} \t {}\t \t\t {} \t\t {}'.format(i[0], i[1], i[2], i[4]))
 
 
-#Algoritmo para dar UPDATE em um usuário
+# Algoritmo para dar UPDATE em um usuário
 def update_usuario(conexao):
     cursor = conexao.cursor()
     rowid = int(input("Qual o ID do usuario que deseja dar update? "))
 
-    #Select dos atributos para serem usados para a confirmação
+    # Select dos atributos para serem usados para a confirmação
     sql = """
     SELECT nome, login,senha FROM user
     WHERE rowid = {} 
@@ -86,7 +85,7 @@ def update_usuario(conexao):
     update = input("O que deseja alterar (Nome, Login ou Senha)? ")
 
     if(update == 'senha' or update == 'Senha'):
-        #Update_x: o x seria o que o usuario escolhe, senha, loguin ou nome
+        # Update_x: o x seria o que o usuario escolhe, senha, loguin ou nome
         update_x = 'a Senha'
         noSql = "senha"
 
@@ -112,6 +111,7 @@ def update_usuario(conexao):
 
                     confirmar = input("Confirme {}: ".format(update_x))
                     if(confirmar == novo):
+                        
                         print(Fore.GREEN + "Alterando", end='', flush=True)
                         for i in range(5):
                             print(Fore.GREEN + '.', end='', flush=True)
@@ -148,12 +148,12 @@ def update_usuario(conexao):
         print("Até mais")
 
 
-#Algoritmo para excluir usuário.
+# Algoritmo para excluir usuário.
 def excluir_usuario(conexao):
     cursor = conexao.cursor()
     rowid = int(input("Qual o ID do usuario que deseja excluir? "))
 
-    #Select dos atributos para serem usados para a confirmação
+    # Select dos atributos para serem usados para a confirmação
     sql = """
     SELECT nome, login,senha FROM user
     WHERE rowid = {} 
