@@ -6,6 +6,15 @@ from colorama import Fore, Back, init
 init(autoreset=True)
 
 
+def menu_login():
+    print(Fore.CYAN + """
+    ========================================""", """
+    1. Entrar
+    2. Criar conta
+    3. Sair""", Fore.CYAN + """
+    ========================================""")
+
+
 
 
 def menu_inicial():
