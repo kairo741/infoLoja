@@ -33,7 +33,7 @@ def criarTabelaCliente(conexao):
 #Inserindo dados na tabela "cliente"
 def inserirCliente(conexao):
     print("Inserindo usuário!")
-    nome = input("Insira o nome do usuario: ")
+    nome = input("Insira o nome do cliente: ")
     cpf = input("insira o CPF do cliente: ")
     rg = input("Insira o RG do cliente: ")
     celular = input("Insira o celular do cliente: ")

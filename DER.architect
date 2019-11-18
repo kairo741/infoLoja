@@ -101,10 +101,10 @@
     <column id="COL27" populated="true" UUID="8168fa80-c2ea-401d-8e19-4c6c9a4f1849" autoIncrement="false" autoIncrementSequenceName="servicos_data_de_abertura_seq" defaultValue="" name="data_de_abertura" nullable="0" physicalName="data_de_abertura" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
      <remarks></remarks>
     </column>
-    <column id="COL28" populated="true" UUID="68f87037-d057-4b86-8763-754c8f003173" autoIncrement="false" autoIncrementSequenceName="servicos_solucao_seq" defaultValue="" name="solucao" nullable="0" physicalName="solucao" precision="300" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL28" populated="true" UUID="68f87037-d057-4b86-8763-754c8f003173" autoIncrement="false" autoIncrementSequenceName="servicos_solucao_seq" defaultValue="" name="solucao" nullable="1" physicalName="solucao" precision="300" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL29" populated="true" UUID="1db9fb6a-9449-467c-b5c6-d61253688ed4" autoIncrement="false" autoIncrementSequenceName="servicos_data_de_fechamento_seq" defaultValue="" name="data_de_fechamento" nullable="0" physicalName="data_de_fechamento" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+    <column id="COL29" populated="true" UUID="1db9fb6a-9449-467c-b5c6-d61253688ed4" autoIncrement="false" autoIncrementSequenceName="servicos_data_de_fechamento_seq" defaultValue="" name="data_de_fechamento" nullable="1" physicalName="data_de_fechamento" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
      <remarks></remarks>
     </column>
     </folder>
@@ -130,7 +130,7 @@
  <ddl-generator type="ca.sqlpower.architect.ddl.GenericDDLGenerator" allow-connection="true"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
- <play-pen zoom="1.0" viewportX="223" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+ <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
   <table-pane table-ref="TAB1" x="634" y="381" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB14" x="361" y="20" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB22" x="853" y="153" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>

@@ -14,19 +14,15 @@ conexao = sqlite3.connect("infoLoja.sqlite")
 
 
 
+# cliente.inserirCliente(conexao)
+# servicos.inserir_os(conexao)
+
+# servicos.excluir_tabela(conexao)
+servicos.fechar_os(conexao)
+# user.inserirUser(conexao)
 
 
 
-
-
-
-
-
-
-
-
-
-# user.inserir_testes(conexao)
 # user.listar_user(conexao)
 # user.excluir_usuario(conexao)
 
