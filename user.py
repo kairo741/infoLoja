@@ -29,7 +29,8 @@ def criarTabelaUser(conexao):
 
 # Inserindo dados na tabela "user"
 def inserirUser(conexao):
-    print("Inserindo usuário!")
+    print(Fore.CYAN + """
+    ========= Cadastro de usuários =========""")
     nome = input("Insira o nome do Usuário: ")
     login = input("insira o login dejado para o Usuário: ")
     senha = input("Insira a senha desejada para o Usuário: ")
@@ -47,11 +48,13 @@ def inserirUser(conexao):
     cursor.execute(sql)
 
     conexao.commit()
-    print(Fore.RED + "Dados inseridos com sucesso!")
+    print(Fore.RED + "Usuário cadastrado com sucesso!")
 
 
 # Função para ver e listar usuários
 def listar_user(conexao):
+    print(Fore.CYAN + """
+    =========== Lista de usuários ===========""")
     cursor = conexao.cursor()
     sql = """
     SELECT rowid, * FROM user 
@@ -75,6 +78,8 @@ def listar_user(conexao):
 # Algoritmo para dar UPDATE em um usuário
 def update_usuario(conexao):
     cursor = conexao.cursor()
+    print(Fore.CYAN + """
+    ======== Modificação de usuário ========""")
     rowid = int(input("Qual o ID do usuario que deseja dar update? "))
 
     # Select dos atributos para serem usados para a confirmação
@@ -100,8 +105,7 @@ def update_usuario(conexao):
         noSql = "nome"
 
     lista = cursor.fetchall()
-    update = input('Deseja realmente dar alterar {} do usuário "{}" que tem o login "{}"? (S/N)'.format(
-        update_x, lista[0][0], lista[0][1]))
+    update = input(f'Deseja realmente alterar o usuário "{Fore.RED}{lista[0][0]}{Fore.RESET}" que tem o login {Fore.RED}{lista[0][1]}{Fore.RESET}"?(S/N) ')
 
     if (update == 'S' or update == 's'):
         while(True):
@@ -153,6 +157,8 @@ def update_usuario(conexao):
 # Algoritmo para excluir usuário.
 def excluir_usuario(conexao):
     cursor = conexao.cursor()
+    print(Fore.CYAN + """
+    ========= Exclusão de usuários =========""")
     rowid = int(input("Qual o ID do usuario que deseja excluir? "))
 
     # Select dos atributos para serem usados para a confirmação
@@ -162,8 +168,7 @@ def excluir_usuario(conexao):
     """.format(rowid)
     cursor.execute(sql)
     lista = cursor.fetchall()
-    excluir = input(
-        'Deseja dar excluir o usuário "{}" que tem o login "{}"? (S/N)'.format(lista[0][0], lista[0][1]))
+    excluir = input(f'Deseja excluir o usuário "{Fore.RED}{lista[0][0]}{Fore.RESET}" que tem o login "{Fore.RED}{lista[0][1]}{Fore.RESET}"?(S/N) ')
 
     if (excluir == 'S' or excluir == 's'):
         while(True):
