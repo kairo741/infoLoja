@@ -1,9 +1,7 @@
 #coding: utf-8
-
 import sqlite3
 from colorama import Fore, init, Back
 import time
-
 
 # Código para semrpe resetar a cor a cada print
 init(autoreset=True)

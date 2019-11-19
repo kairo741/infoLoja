@@ -7,24 +7,55 @@ import funcoes
 import cliente
 import servicos
 from funcoes import cls
+from funcoes import sair
+from funcoes import opcao
+from funcoes import continuar
 
 
 #Conexao ao Banco
 conexao = sqlite3.connect("infoLoja.sqlite")
 
 
- 
-# cliente.inserirCliente(conexao)
-# servicos.inserir_os(conexao)
+while(True):
+    cls()
+    menus.menu_login()
+    opcao = int(input("Insira a opção: "))
+    
+    #Se escolhida a opção 1: Logar no sistema
+    if(opcao == 1):
+        cls()
+        login = funcoes.login(conexao)
+        cls()
+        menus.menu_inicial()
+        
 
-# servicos.excluir_tabela(conexao)
-# servicos.fechar_os(conexao)
-# user.inserirUser(conexao)
 
-# servicos.salvar_os(conexao)
-servicos.visualizar_os()
-# user.listar_user(conexao)
-# user.excluir_usuario(conexao)
+    #Se escolhida a opção 2: Criar conta
+    elif(opcao == 2):    
+        cls()
+        user.inserirUser(conexao)
+
+
+
+    #Se escolhida a opção 3: Sair do sistema
+    elif(opcao == 3):
+        sair()
+
+
+    #Se digitado qualquer outro número
+    else:
+        print("Opção inválida!")
+        continuar()
+
+
+
+
+
+
+
+
+
+
 
 
 
