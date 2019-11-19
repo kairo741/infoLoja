@@ -36,12 +36,11 @@ def login(conexao):
     for i in range (0, len(lista)):
         if(lista[i][2] == login and lista[i][3] == senha):
             print(Fore.LIGHTGREEN_EX + "Bem Vindo ao INFO LOJA {}!".format(lista[i][1]))   
-            confirm = 1
-            nome = lista[i][1]
-            return nome        
+            confirm = 1      
     if(confirm == 0):
         print("Login ou Senha incorreto(s)!")
-
+        continuar()
+    return confirm
   
 def sair():
 
@@ -55,7 +54,8 @@ def sair():
 
 
 def opcao():
-    opcao = int(input("Insira a opção: "))
+    opcao = input("Insira a opção: ")
+    opcao = int(opcao)
     return opcao
 
 
