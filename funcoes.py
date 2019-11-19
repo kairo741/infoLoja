@@ -68,3 +68,7 @@ def continuar():
     
     else:
         print()
+
+def op_invalida():
+    print("Opção inválida!")
+    continuar()

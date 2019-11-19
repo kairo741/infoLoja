@@ -3,6 +3,7 @@
 import sqlite3
 from colorama import Fore, init, Back
 import time
+from funcoes import op_invalida, sair, cls
 
 
 # Código para semrpe resetar a cor a cada print
@@ -89,20 +90,32 @@ def update_usuario(conexao):
     """.format(rowid)
     cursor.execute(sql)
     
-    update = input("O que deseja alterar (Nome, Login ou Senha)? ")
-    update = update.lower()
-    if(update == 'senha'):
-        # Update_x: o x seria o que o usuario escolhe, senha, loguin ou nome
-        update_x = 'a Senha'
-        noSql = "senha"
+    while(True):
+        update = input("O que deseja alterar (Nome, Login ou Senha)? ")
+        update = update.lower()
+        if(update == 'senha'):
+            # Update_x: o x seria o que o usuario escolhe, senha, loguin ou nome
+            update_x = 'a Senha'
+            noSql = "senha"
+            break
 
-    elif(update == 'login'):
-        update_x = 'o Login'
-        noSql = "login"
+        elif(update == 'login'):
+            update_x = 'o Login'
+            noSql = "login"
+            break
 
-    elif(update == 'nome'):
-        update_x = 'o Nome'
-        noSql = "nome"
+        elif(update == 'nome'):
+            update_x = 'o Nome'
+            noSql = "nome"
+            break
+        
+        else:
+            op_invalida()
+            cls()
+            print(Fore.CYAN + """
+    ======== Modificação de usuário ========""")
+
+
 
     lista = cursor.fetchall()
     update = input(f'Deseja realmente alterar o usuário "{Fore.RED}{lista[0][0]}{Fore.RESET}" que tem o login {Fore.RED}{lista[0][1]}{Fore.RESET}"?(S/N) ')
@@ -145,21 +158,22 @@ def update_usuario(conexao):
                         print("Confirmação incorreta!")
                     
                     continuar = input("Deseja continuar (S/N)? ")
+                    continuar = continuar.lower()
                     
-                    if (continuar == 'N' or continuar == 'n'):
-                        print("Você saiu!")
-                        break
+                    if (continuar == 'n'):
+                        sair()
 
             else:
                 print(Fore.RED + "Senha incorreta")
 
-            continuar = input("Deseja continuar (S/N)? ")
-            if (continuar == 'N' or continuar == 'n'):
-                print("Você saiu!")
+            
+            continuar = input("Deseja alterar novamente (S/N)? ")
+            continuar = continuar.lower()
+            if (continuar ==  'n'):
                 break
+                
 
-    else:
-        print("Até mais")
+
 
 
 # Algoritmo para excluir usuário.
@@ -176,9 +190,15 @@ def excluir_usuario(conexao):
     """.format(rowid)
     cursor.execute(sql)
     lista = cursor.fetchall()
+    
+    
+    
     excluir = input(f'Deseja excluir o usuário "{Fore.RED}{lista[0][0]}{Fore.RESET}" que tem o login "{Fore.RED}{lista[0][1]}{Fore.RESET}"?(S/N) ')
+    excluir = excluir.lower()
 
-    if (excluir == 'S' or excluir == 's'):
+
+
+    if (excluir == 's'):
         while(True):
             confirmar = input("Insira a senha para a exclusão: ")
             if(confirmar == lista[0][2]):
@@ -203,12 +223,9 @@ def excluir_usuario(conexao):
                 print(Fore.RED + "Senha incorreta")
 
             continuar = input("Deseja continuar (S/N)? ")
-            if (continuar == 'N' or continuar == 'n'):
-                print("Você saiu!")
-                break
-
-    else:
-        print("Até mais")
+            continuar = continuar.lower()
+            if (continuar == 'n'):
+                sair()
 
 
 def inserir_testes(conexao):

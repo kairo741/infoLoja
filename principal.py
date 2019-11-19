@@ -7,10 +7,7 @@ import funcoes
 import cliente
 import servicos
 from funcoes import cls
-from funcoes import sair
-from funcoes import opcao
-from funcoes import continuar
-
+from funcoes import sair, opcao, continuar, op_invalida
 
 # Conexao ao Banco
 conexao = sqlite3.connect("infoLoja.sqlite")
@@ -77,8 +74,7 @@ while(True):
 
 
                         else:
-                            print("Opção inválida!")
-                            continuar()
+                            op_invalida()
 
                 elif(opcao == "2"):
                     while(True):
@@ -91,9 +87,7 @@ while(True):
                     sair()
 
                 else:
-                    print("Opção inválida!")
-                    continuar()
-        
+                   op_invalida()
     
 
 
