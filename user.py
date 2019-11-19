@@ -66,14 +66,16 @@ def listar_user(conexao):
     lista = cursor.fetchall()
     usuario = int(input("Insira o usuário específico que deseja ver: "))
     # Print dos atributos principais do usuário
-    print("ID\t Nome\t \t\t Login \t\t Cargo")
+    print(Fore.RED + "ID\t Nome\t \t\t Login \t\t\t Cargo")
 
     for i in lista:
         if(i[0] == usuario):
-            print(
-                Back.RED + '{} \t {}\t \t\t {} \t\t {}'.format(i[0], i[1], i[2], i[4]))
+            print(Back.RED + f'{i[0]}\t', Back.RED + f'{i[1]:<13}\t\t',Back.RED + f'{i[2]:<13}\t\t',Back.RED + f'{i[4]:<13}')
         else:
-            print('{} \t {}\t \t\t {} \t\t {}'.format(i[0], i[1], i[2], i[4]))
+            print(f'{i[0]}\t', f'{i[1]:<13}\t\t', f'{i[2]:<13}\t\t',f'{i[4]:<13}')
+
+
+
 
 
 # Algoritmo para dar UPDATE em um usuário
@@ -179,9 +181,19 @@ def update_usuario(conexao):
 # Algoritmo para excluir usuário.
 def excluir_usuario(conexao):
     cursor = conexao.cursor()
-    print(Fore.CYAN + """
+    
+    while(True):
+        cls()
+        print(Fore.CYAN + """
     ========= Exclusão de usuários =========""")
-    rowid = int(input("Qual o ID do usuario que deseja excluir? "))
+        rowid = input("Qual o ID do usuario que deseja excluir? ")
+        if(rowid != int):
+            print("Apenas númerdos de IDs, ", end="")
+            op_invalida()
+        else:
+            
+            rowid = int(rowid)
+            break
 
     # Select dos atributos para serem usados para a confirmação
     sql = """

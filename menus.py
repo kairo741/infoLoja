@@ -8,7 +8,7 @@ init(autoreset=True)
 
 def menu_login():
     print(Fore.CYAN + """
-    ========================================""", """
+    =============== InfoLoja ===============""", """
     1. Entrar
     2. Criar conta
     3. Sair""", Fore.CYAN + """
@@ -19,7 +19,7 @@ def menu_login():
 
 def menu_inicial():
     print(Fore.CYAN +"""
-    ========================================""","""
+    ======== Bem Vindo ao InfoLoja! ========""","""
     1. Controle de usuários
     2. Controle de ordem de serviços (O.S.)
     3. Sair""", Fore.CYAN + """

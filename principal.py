@@ -87,7 +87,8 @@ while(True):
                     sair()
 
                 else:
-                   op_invalida()
+                    
+                    op_invalida()
     
 
 
