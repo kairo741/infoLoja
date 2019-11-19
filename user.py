@@ -88,31 +88,35 @@ def update_usuario(conexao):
     WHERE rowid = {} 
     """.format(rowid)
     cursor.execute(sql)
-
+    
     update = input("O que deseja alterar (Nome, Login ou Senha)? ")
-
-    if(update == 'senha' or update == 'Senha'):
+    update = update.lower()
+    if(update == 'senha'):
         # Update_x: o x seria o que o usuario escolhe, senha, loguin ou nome
         update_x = 'a Senha'
         noSql = "senha"
 
-    elif(update == 'Login' or update == 'login'):
+    elif(update == 'login'):
         update_x = 'o Login'
         noSql = "login"
 
-    elif(update == 'nome' or update == 'Nome'):
+    elif(update == 'nome'):
         update_x = 'o Nome'
         noSql = "nome"
 
     lista = cursor.fetchall()
     update = input(f'Deseja realmente alterar o usuário "{Fore.RED}{lista[0][0]}{Fore.RESET}" que tem o login {Fore.RED}{lista[0][1]}{Fore.RESET}"?(S/N) ')
+    update = update.lower()
 
-    if (update == 'S' or update == 's'):
+    
+    if (update == 's'):
         while(True):
             confirmar = input("Insira a senha: ")
             if(confirmar == lista[0][2]):
-                novo = input(
-                    "Insira {} novo(a) que deseja alterar: ".format(update_x))
+                
+                novo = input(f"Insira {update_x} novo(a) que deseja alterar: ")
+                
+                
                 while(True):
 
                     confirmar = input("Confirme {}: ".format(update_x))
@@ -135,9 +139,13 @@ def update_usuario(conexao):
                         print("Você alterou {} do Usuário {}!".format(
                             update_x, rowid))
                         break
+                    
+                    
                     else:
                         print("Confirmação incorreta!")
+                    
                     continuar = input("Deseja continuar (S/N)? ")
+                    
                     if (continuar == 'N' or continuar == 'n'):
                         print("Você saiu!")
                         break
