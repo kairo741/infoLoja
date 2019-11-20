@@ -43,7 +43,7 @@ def menu_os():
     1. Criar ordem de serviço
     2. Alterar ordem de serviço
     3. Ler ordem de serviço
-    4. Imprimir ordem de serviço
+    4. Finalizar ordem de serviço
     5. Voltar
     6. Sair""", Fore.CYAN + """
     ========================================""")

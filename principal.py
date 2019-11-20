@@ -27,7 +27,7 @@ while(True):
 
             while(True):
                 cls()
-                #Menu inicial, ir para Usuários ou O.S.s
+                #Menu inicial, ir para Usuários ou OSs
                 menus.menu_inicial()
                 opcao = input("Insira a opção: ")
 
@@ -76,11 +76,49 @@ while(True):
                         else:
                             op_invalida()
 
+                #Se escolhida a opção 2, que entra no menu de OSs
                 elif(opcao == "2"):
                     while(True):
                         cls()
                         menus.menu_os()
                         opcao = input("Insira a opção: ")
+
+                        #Quando escolhida a opção de criar OSs
+                        if(opcao == "1"):
+                            cls()
+                            servicos.inserir_os(conexao)
+
+                        #Quando escolhida a opção de Alterar OSs
+                        elif(opcao == "2"):
+                            print("Criar a função!")
+                            continuar()
+
+                        #Se escolhida a opção de Ler OS
+                        elif(opcao == "3"):
+                            cls()
+                            servicos.visualizar_os()
+                        
+
+                        #Se escolhida a opção de finalizar ordem de serviço
+                        elif(opcao == "4"):
+                            cls()
+                            servicos.finalizar_os(conexao)
+                        
+
+
+                        #Opção para voltar do MENU DE OSs
+                        elif(opcao == "5"):
+                            break
+
+
+                        #Opção para sair do sistema
+                        elif(opcao == "6"):
+                            sair()
+
+                        #Se digitada uma opção inválida
+                        else:
+                            op_invalida()
+
 
                 elif(opcao == "3"):
 

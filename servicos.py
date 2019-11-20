@@ -2,6 +2,8 @@ import sqlite3
 from colorama import Fore, init, Back
 import time
 from datetime import datetime
+from funcoes import op_invalida, sair, cls, continuar
+
 
 
 #Código para semrpe resetar a cor a cada print
@@ -33,7 +35,8 @@ def criar_tabela_servicos(conexao):
 def inserir_os(conexao):
     cursor = conexao.cursor()
 
-    print("Inserindo O.S.!")
+    print(Fore.CYAN + """
+    =========== Inserção de O.S. ===========""")
     idcli  = int(input("Insira o número de cadastro do cliente desejado: "))
     iduser = int(input("Insira o número de cadastro do técnico: "))
     problema = input("Qual o problema? ")
@@ -51,6 +54,10 @@ def inserir_os(conexao):
 
     conexao.commit()
     print(Fore.RED + "O.S. criada com sucesso!")
+    
+    continuar()
+
+
 
 #Função para fechar uma OS:
 def fechar_os(conexao):
@@ -92,13 +99,21 @@ def excluir_tabela(conexao):
     print(Fore.GREEN + "Tabela excluída")
 
 
-
-def salvar_os(conexao):
+#Esse procedimento faz o select com base no que o usuario registrou na OS e cria um arquivo como BKP da OS.
+def finalizar_os(conexao):
     cursor = conexao.cursor()
-    num_os = int(input("Insira o número da O.S. que deseja salvar: "))
-    sql = """
-    SELECT rowid, * FROM servicos
-    """
+    num_os = int(input("Insira o número da O.S. que deseja finalizar: "))
+    sql = '''
+    SELECT servicos.rowid AS "Número da OS", user.nome AS "Técnico", cliente.nome AS "Nome do Cliente",
+    servicos.problema AS "Problema", servicos.data_de_abertura AS "Data de Abertura",
+    servicos.solucao AS "Solução", servicos.data_de_fechamento AS "Data de Fechamento",
+    servicos.valor AS "Valor do serviço"
+    FROM servicos INNER JOIN user
+    ON servicos.iduser = user.rowid
+    INNER JOIN cliente
+    ON servicos.idcli = cliente.rowid'''
+
+
     cursor.execute(sql)
     #Atributo para retornar o resultado o Select
     lista = cursor.fetchall()
@@ -107,8 +122,14 @@ def salvar_os(conexao):
     for i in range(0, len(lista[num_os])):
         escrita = str(lista[num_os-1][i])
         arquivo.write(escrita+"@_@")
-    print(Fore.GREEN + "Feito o BKP e salva com sucesso!")
+    print(Fore.GREEN + "Finalizada a ordem de serviço e feito o BKP!")
     arquivo.close()
+
+    continuar()
+
+
+
+
 
 def visualizar_os():
     num_os = int(input("Insira o número da O.S. que deseja visualizar: "))
@@ -116,18 +137,45 @@ def visualizar_os():
     arquivo = open(f"{num_os}.txt", "r")
     conteudo = arquivo.readline()
     x = conteudo.split("@_@")
-    print(Fore.RED +f"""
-    OS: {x[0]}              Data de Entrada: {x[4]}
-    """, f"""Técnico: {x[1]}                 Cliente: {x[2]}
-    
-    Problema:
-    {x[3]}
-    
-    Solução:
-    {x[5]}
-    
-    Valor: {x[7]}           Data de Saída: {x[6]}""")
-
+    print("""
+   |--------------------------------------------------------------
+   | """,Fore.RED+"""OS: """, f"""{x[0]}""",Fore.RED + """\t\t\tData de Entrada:""",f""" {x[4]:<}
+   |--------------------------------------------------------------
+   |""", Fore.RED+ """Técnico:""", f"""{x[1]}                 """, Fore.RED + """Cliente:""",f""" {x[2]}
+""","""  |--------------------------------------------------------------
+   |""",Fore.RED+ """Problema:""","""
+   |""",f"""{x[3]:<}
+   |--------------------------------------------------------------
+   |""", Fore.RED +"""Solução:
+  """,f"""| {x[5]}
+   |--------------------------------------------------------------
+   |""", Fore.RED + """Valor:""",f""" {x[7]}           """,Fore.RED+"""Data de Saída: """,f"""{x[6]}
+   |--------------------------------------------------------------""")
 
 
     arquivo.close()
+
+    continuar()
+
+
+
+
+def teste_select(conexao):
+    cursor = conexao.cursor()
+
+
+    sql= '''
+    SELECT servicos.rowid AS "Número da OS", user.nome AS "Técnico", cliente.nome AS "Nome do Cliente",
+    servicos.problema AS "Problema", servicos.data_de_abertura AS "Data de Abertura",
+    servicos.solucao AS "Solução", servicos.data_de_fechamento AS "Data de Fechamento",
+    servicos.valor AS "Valor do serviço"
+    FROM servicos INNER JOIN user
+    ON servicos.iduser = user.rowid
+    INNER JOIN cliente
+    ON servicos.idcli = cliente.rowid'''
+
+    cursor.execute(sql)
+    #Atributo para retornar o resultado o Select
+    lista = cursor.fetchall()
+    print(lista)
+
