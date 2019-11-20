@@ -350,7 +350,7 @@ def relatorio_os_mes(conexao):
     lista = cursor.fetchall()
     
     cls()
-    print(lista)
+    # print(lista)
     print(Fore.CYAN + """
        == Relatório de criação mensal de O.S. =""")
     print(Fore.RED+"    |OS|\t|  Técnico  |\t|Data de Abertura|")
