@@ -105,14 +105,20 @@ while(True):
                             servicos.finalizar_os(conexao)
                         
 
+                        #Opção dos relatórios de OSs mensal
+                        elif(opcao == "5"):
+                            cls()
+                            servicos.relatorio_os_mes(conexao)
+
+
 
                         #Opção para voltar do MENU DE OSs
-                        elif(opcao == "5"):
+                        elif(opcao == "6"):
                             break
 
 
                         #Opção para sair do sistema
-                        elif(opcao == "6"):
+                        elif(opcao == "7"):
                             sair()
 
                         #Se digitada uma opção inválida

@@ -2,6 +2,7 @@ import sqlite3
 from colorama import Fore, init, Back
 import time
 from os import system
+import getpass
 
 
 
@@ -23,7 +24,7 @@ def login(conexao):
     cursor = conexao.cursor()
 
     login = input("Login: ")
-    senha = input("Senha: ")
+    senha = getpass.getpass("Senha: ")
 
     sql = """
     SELECT rowid, * FROM user 

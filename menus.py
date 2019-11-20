@@ -44,6 +44,7 @@ def menu_os():
     2. Alterar ordem de serviço
     3. Ler ordem de serviço
     4. Finalizar ordem de serviço
-    5. Voltar
-    6. Sair""", Fore.CYAN + """
+    5. Relatório de ordem de serviços criadas no mês
+    6. Voltar
+    7. Sair""", Fore.CYAN + """
     ========================================""")
