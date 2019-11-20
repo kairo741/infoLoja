@@ -220,7 +220,7 @@ def alterar_os(conexao):
     
     while(True):
         update = input("""O que deseja modificar? 
-        (idcli [ID do Cliente], iduser [ID do Técnico], problema, solução, data de fechamento [dtfecha] ou valor)
+        (idcli [ID do Cliente], iduser [ID do Técnico], problema, solução ou valor)
         
         """)
         update = update.lower()
@@ -250,12 +250,6 @@ def alterar_os(conexao):
             update_x = "a solução"
             atual = str(lista[0][4])
             break
-
-        elif( update == "dtfecha"):
-            no_sql = "data_de_fechamento"
-            update_x = "a data de fechamento"
-            atual = str(lista[0][5])
-            break
             
         elif(update == "valor"):
             no_sql = "valor"
@@ -280,11 +274,77 @@ def alterar_os(conexao):
                 print("Esse atibuto ainda não está prenchido!")   
                 
 
-            else:    
-                print(
-                    f"Lembre-se {update_x} altual é '{Fore.CYAN}{atual}{Fore.RESET}'!")
+            else: 
+                novo = input(f"Insira {update_x} novo(a): ")
+                while(True):
+                    cls()
+                    print(Fore.CYAN + f"""
+        ========= Modificando {update_x} =========""")
+
+                    print(f"Lembre-se {update_x} altual é '{Fore.CYAN}{atual}{Fore.RESET}'!")
+                    
+                    print(f"Voce digitou: {novo}")
+                    confirmar = input("Confirme {}: ".format(update_x))
+                    
+                    
+                    update = input(f"Deseja mesmo alterar {update_x}? (S/N) ")
+                    update = update.lower()
+                    if(update == "n"):
+                        cls()
+                        break
+                    if(confirmar == novo):
+
+                            print(Fore.GREEN + "Alterando", end='', flush=True)
+                            for i in range(5):
+                                print(Fore.GREEN + '.', end='', flush=True)
+                                time.sleep(0.5)
+                            print()
+
+
+
+                    sql = f"""
+                    UPDATE servicos
+                    SET {no_sql} = "{confirmar}"
+                    WHERE rowid = {num_os} """
+                    cursor.execute(sql)
+                    conexao.commit()
+
+                    print(f"Você alterou {update_x} da O.S. {num_os}!")
+                    break
+                
+                else:
+                    print("Confirmação incorreta!")
+                    continuar = input("Deseja continuar (S/N)? ")
+                    continuar = continuar.lower()
+
+                    if (continuar == 'n'):
+                        sair()
             
-            a = input("A")
+            
+            
+            continuar = input("Deseja alterar novamente (S/N)? ")
+            continuar = continuar.lower()
+            if (continuar == 'n'):
+                break
 
     else:
         sair()
+
+
+
+def relatorio_os_mes(conexao):
+    cursor = conexao.cursor()
+
+    mes = input("Insira o o número do mês que deseja ver o relatório de Ordens de Serviço criadas: ")
+
+
+    sql = """
+    SELECT data_de_abertura FROM servicos
+    """
+    cursor.execute(sql)
+
+
+    lista = cursor.fetchall()
+
+    posicao = str(lista[1])
+    print(posicao[5:7])

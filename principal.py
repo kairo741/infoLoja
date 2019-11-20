@@ -90,8 +90,8 @@ while(True):
 
                         #Quando escolhida a opção de Alterar OSs
                         elif(opcao == "2"):
-                            print("Criar a função!")
-                            continuar()
+                            cls()
+                            servicos.alterar_os(conexao)
 
                         #Se escolhida a opção de Ler OS
                         elif(opcao == "3"):

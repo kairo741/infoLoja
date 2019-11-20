@@ -9,4 +9,6 @@ conexao = sqlite3.connect("infoLoja.sqlite")
 # servicos.salvar_os(conexao)
 # servicos.visualizar_os()
 # user.excluir_usuario(conexao)
-servicos.alterar_os(conexao)
+# servicos.alterar_os(conexao)
+
+servicos.relatorio_os_mes(conexao)
