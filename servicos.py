@@ -137,6 +137,7 @@ def visualizar_os():
     arquivo = open(f"{num_os}.txt", "r")
     conteudo = arquivo.readline()
     x = conteudo.split("@_@")
+    #Print Configurado para o formato de os, futuramente gerar formatod HTML e criar o print com For
     print("""
    |--------------------------------------------------------------
    | """,Fore.RED+"""OS: """, f"""{x[0]}""",Fore.RED + """\t\t\tData de Entrada:""",f""" {x[4]:<}
