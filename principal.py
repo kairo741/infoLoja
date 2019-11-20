@@ -13,6 +13,12 @@ from funcoes import sair, opcao, continuar, op_invalida
 conexao = sqlite3.connect("infoLoja.sqlite")
 
 
+# Criar tabelas
+cliente.criarTabelaCliente(conexao)
+user.criarTabelaUser(conexao)
+servicos.criar_tabela_servicos(conexao)
+
+
 while(True):
     cls()
     menus.menu_login()
@@ -63,13 +69,24 @@ while(True):
                             user.listar_user(conexao)
                             continuar()
 
-                        #Se escolhida a opção de voltar
                         elif(opcao == "5"):
+                            cls()
+                            cliente.inserirCliente(conexao)
+                            continuar()
+
+                        elif(opcao == "6"):
+                            cls()
+                            cliente.listar_cliente(conexao)
+                            continuar()
+
+
+                        #Se escolhida a opção de voltar
+                        elif(opcao == "7"):
                             cls()
                             break
                         
                         #Se escolhida a opção de sair do sistema.
-                        elif(opcao == "6"):
+                        elif(opcao == "8"):
                             sair()
 
 
@@ -150,10 +167,5 @@ while(True):
         print("Opção inválida!")
         continuar()
 
-
-# Criar tabelas
-# cliente.criarTabelaCliente(conexao)
-# user.criarTabelaUser(conexao)
-# servicos.criar_tabela_servicos(conexao)
 
 conexao.close()

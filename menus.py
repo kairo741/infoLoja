@@ -33,8 +33,10 @@ def menu_usuario():
     2. Excluir usuário
     3. Alterar usuário
     4. Listar usuários
-    5. Voltar
-    6. Sair""", Fore.CYAN + """
+    5. Cadastrar Cliente
+    6. Listar Clientes
+    7. Voltar
+    8. Sair""", Fore.CYAN + """
     ========================================""")
 
 def menu_os():

@@ -352,12 +352,12 @@ def relatorio_os_mes(conexao):
     cls()
     print(lista)
     print(Fore.CYAN + """
-    == Relatório de criação mensal de O.S. =""")
-    print(Fore.RED+"\t|OS|\t|Técnico|\t|Data de Abertura|")
+       == Relatório de criação mensal de O.S. =""")
+    print(Fore.RED+"    |OS|\t|  Técnico  |\t|Data de Abertura|")
     for i in range(0, len(lista)):
         posicao = str(lista[i])
         if(posicao[8:10]== mes):
-           print(f"\t|{posicao[1]} |\t|{posicao[25:-2]}|\t|{posicao[5:21]}|") 
+           print(f"    |{posicao[1]} |\t|{posicao[25:-2]:<8}   |\t|{posicao[5:21]:>15}|") 
 
     continuar()
 

@@ -3,7 +3,7 @@ from colorama import Fore, init, Back
 import time
 from os import system
 import getpass
-
+import base64
 
 
 
@@ -22,9 +22,11 @@ def cls():
 #Procedimento para o login
 def login(conexao):
     cursor = conexao.cursor()
-
+    print(Fore.CYAN + """
+    ================ Login ================""")
     login = input("Login: ")
     senha = getpass.getpass("Senha: ")
+
 
     sql = """
     SELECT rowid, * FROM user 

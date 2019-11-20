@@ -61,3 +61,25 @@ def inserirCliente(conexao):
 
     conexao.commit()
     print(Fore.RED + "Dados inseridos com sucesso!")
+
+
+def listar_cliente(conexao):
+    print(Fore.CYAN + """
+    =========== Lista de clientes ===========""")
+    cursor = conexao.cursor()
+    sql = """
+    SELECT rowid, nome, cpf, celular FROM cliente 
+    """
+
+    cursor.execute(sql)
+    # Atributo para retornar o resultado o Select
+    lista = cursor.fetchall()
+    usuario = int(input("Insira o cliente específico que deseja ver: "))
+    # Print dos atributos principais do usuário
+    print(Fore.RED + "ID\t Nome\t \t\t CPF \t\t\t Celular")
+
+    for i in lista:
+        if(i[0] == usuario):
+            print(Back.RED + f'{i[0]}\t', Back.RED + f'{i[1]:<13}\t\t',Back.RED + f'{i[2]:<13}\t\t', Back.RED + f'{i[3]:<13}')
+        else:
+            print(f'{i[0]}\t', f'{i[1]:<13}\t\t',f'{i[2]:<13}\t\t', f'{i[3]:<13}')
