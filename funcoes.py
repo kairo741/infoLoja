@@ -72,3 +72,11 @@ def continuar():
 def op_invalida():
     print("Opção inválida!")
     continuar()
+
+
+def isnumber(value):
+    try:
+         int(value)
+    except ValueError:
+         return False
+    return True

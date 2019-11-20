@@ -2,7 +2,7 @@ import sqlite3
 from colorama import Fore, init, Back
 import time
 from datetime import datetime
-from funcoes import op_invalida, sair, cls, continuar
+from funcoes import op_invalida, sair, cls, continuar, isnumber
 
 
 
@@ -180,3 +180,111 @@ def teste_select(conexao):
     lista = cursor.fetchall()
     print(lista)
 
+
+
+def alterar_os(conexao):
+    cursor = conexao.cursor()
+    
+    while(True):
+        cls()
+        print(Fore.CYAN + """
+        ========= Modificação de O.S. =========""")
+        num_os = input("Qual o número da O.S. a ser modificada? ")
+
+        if(isnumber(num_os) ):
+            num_os = int(num_os)
+            break
+
+        else:
+            print("Digite somente números! ", end="")
+            op_invalida()
+
+    # sql = f"""
+    # SELECT servicos.rowid, user.nome, cliente.nome, servicos.problema, servicos.solucao, 
+    # servicos.data_de_fechamento, servicos.valor
+    # FROM servicos INNER JOIN user
+    # ON servicos.iduser = user.rowid
+    # INNER JOIN cliente
+    # ON servicos.idcli = cliente.rowid
+    # """    
+    sql = f"""
+    SELECT 
+    rowid, idcli, iduser, problema, solucao, data_de_fechamento, valor
+    FROM servicos  WHERE rowid = {num_os} """    
+    cursor.execute(sql)
+    lista = cursor.fetchall()
+
+    
+
+    print(lista[0])
+    
+    while(True):
+        update = input("""O que deseja modificar? 
+        (idcli [ID do Cliente], iduser [ID do Técnico], problema, solução, data de fechamento [dtfecha] ou valor)
+        
+        """)
+        update = update.lower()
+
+
+        if(update == "idcli" ):
+            no_sql = "idcli"
+            update_x = "o ID do Cliente"
+            atual = lista[0][1]
+            break
+
+        elif( update == "iduser"):
+            no_sql = "iduser"
+            update_x = "o ID do Técnico"
+            atual = lista[0][2]
+            break
+            
+        
+        elif(update == "problema" ):
+            no_sql = "problema"
+            update_x = "o problema"
+            atual = lista[0][3]
+            break
+
+        elif(update == "solução" or update == "solucao"):
+            no_sql = "solucao"
+            update_x = "a solução"
+            atual = str(lista[0][4])
+            break
+
+        elif( update == "dtfecha"):
+            no_sql = "data_de_fechamento"
+            update_x = "a data de fechamento"
+            atual = str(lista[0][5])
+            break
+            
+        elif(update == "valor"):
+            no_sql = "valor"
+            update_x = "o valor final"
+            atual = str(lista[0][6])
+            break
+        
+        else:
+            op_invalida()
+            cls()
+            print(Fore.CYAN + """
+        ========= Modificação de O.S. =========""")
+
+    
+    update = input(f"Deseja mesmo alterar {update_x} da {Fore.RED}O.S. {lista[0][0]}{Fore.RESET}? (S/N) ")
+    update = update.lower()
+
+    if(update == "s"):
+
+        while(True):
+            if(atual == "None"):
+                print("Esse atibuto ainda não está prenchido!")   
+                
+
+            else:    
+                print(
+                    f"Lembre-se {update_x} altual é '{Fore.CYAN}{atual}{Fore.RESET}'!")
+            
+            a = input("A")
+
+    else:
+        sair()

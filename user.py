@@ -3,7 +3,7 @@
 import sqlite3
 from colorama import Fore, init, Back
 import time
-from funcoes import op_invalida, sair, cls
+from funcoes import op_invalida, sair, cls, isnumber
 
 
 # Código para semrpe resetar a cor a cada print
@@ -178,6 +178,7 @@ def update_usuario(conexao):
 
 
 
+
 # Algoritmo para excluir usuário.
 def excluir_usuario(conexao):
     cursor = conexao.cursor()
@@ -187,13 +188,15 @@ def excluir_usuario(conexao):
         print(Fore.CYAN + """
     ========= Exclusão de usuários =========""")
         rowid = input("Qual o ID do usuario que deseja excluir? ")
-        if(rowid != int):
-            print("Apenas númerdos de IDs, ", end="")
-            op_invalida()
-        else:
-            
+        
+        
+        if(isnumber(rowid)):           
             rowid = int(rowid)
             break
+        
+        else:            
+            print("Apenas números de IDs, ", end="")
+            op_invalida()
 
     # Select dos atributos para serem usados para a confirmação
     sql = """
