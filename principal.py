@@ -1,3 +1,5 @@
+#coding: utf-8
+
 import sqlite3
 
 # Import dos Meus Arquivos
@@ -69,24 +71,24 @@ while(True):
                             user.listar_user(conexao)
                             continuar()
 
-                        elif(opcao == "5"):
-                            cls()
-                            cliente.inserirCliente(conexao)
-                            continuar()
+                        # elif(opcao == "5"):
+                        #     cls()
+                        #     cliente.inserirCliente(conexao)
+                        #     continuar()
 
-                        elif(opcao == "6"):
-                            cls()
-                            cliente.listar_cliente(conexao)
-                            continuar()
+                        # elif(opcao == "6"):
+                        #     cls()
+                        #     cliente.listar_cliente(conexao)
+                        #     continuar()
 
 
                         #Se escolhida a opção de voltar
-                        elif(opcao == "7"):
+                        elif(opcao == "5"):
                             cls()
                             break
                         
                         #Se escolhida a opção de sair do sistema.
-                        elif(opcao == "8"):
+                        elif(opcao == "6"):
                             sair()
 
 
@@ -142,8 +144,15 @@ while(True):
                         else:
                             op_invalida()
 
-
+                #Se escolhida a opção 2, que entra no menu de OSs
                 elif(opcao == "3"):
+                    cls()
+                    menus.menu_cliente()
+
+
+                    
+                #Opção de sair do sistema
+                elif(opcao == "4"):
 
                     sair()
 

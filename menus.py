@@ -22,7 +22,8 @@ def menu_inicial():
     ======== Bem Vindo ao InfoLoja! ========""","""
     1. Controle de usuários
     2. Controle de ordem de serviços (O.S.)
-    3. Sair""", Fore.CYAN + """
+    3. Controle de clientes
+    4. Sair""", Fore.CYAN + """
     ========================================""")
 
 
@@ -33,10 +34,8 @@ def menu_usuario():
     2. Excluir usuário
     3. Alterar usuário
     4. Listar usuários
-    5. Cadastrar Cliente
-    6. Listar Clientes
-    7. Voltar
-    8. Sair""", Fore.CYAN + """
+    5. Voltar
+    6. Sair""", Fore.CYAN + """
     ========================================""")
 
 def menu_os():
@@ -49,4 +48,15 @@ def menu_os():
     5. Relatório de ordem de serviços criadas no mês
     6. Voltar
     7. Sair""", Fore.CYAN + """
+    ========================================""")
+
+def menu_cliente():
+    print(Fore.CYAN + """
+    ========= Controle de Clientes =========""", """
+    1. Cadastrar cliente
+    2. Listar clientes
+    3. Alterar cliente
+    4. Excluir cliente
+    5. Voltar
+    6. Sair""", Fore.CYAN + """
     ========================================""")
