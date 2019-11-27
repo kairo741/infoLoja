@@ -102,7 +102,29 @@ def excluir_tabela(conexao):
 #Esse procedimento faz o select com base no que o usuario registrou na OS e cria um arquivo como BKP da OS.
 def finalizar_os(conexao):
     cursor = conexao.cursor()
-    num_os = int(input("Insira o número da O.S. que deseja finalizar: "))
+    
+    while(True):
+        while(True):
+            cls()
+            print(Fore.CYAN + """
+            ========= Finalização de O.S. =========""")
+            num_os = input("Insira o número da O.S. que deseja finalizar: ")
+
+            validacao = validacao_os(num_os)
+
+            if(validacao == 0):
+                break
+
+        if(isnumber(num_os) ):
+            num_os = int(num_os)
+            num_os = num_os-1
+            break
+
+        else:
+            print("Digite somente números! ", end="")
+            op_invalida()
+
+
     sql = '''
     SELECT servicos.rowid AS "Número da OS", user.nome AS "Técnico", cliente.nome AS "Nome do Cliente",
     servicos.problema AS "Problema", servicos.data_de_abertura AS "Data de Abertura",
@@ -117,10 +139,11 @@ def finalizar_os(conexao):
     cursor.execute(sql)
     #Atributo para retornar o resultado o Select
     lista = cursor.fetchall()
-
-    arquivo = open(f"{num_os}.txt", "w")
+    # print(num_os)
+    # print(lista[num_os][1])
+    arquivo = open(f"{num_os+1}.txt", "w")
     for i in range(0, len(lista[num_os])):
-        escrita = str(lista[num_os-1][i])
+        escrita = str(lista[num_os][i])
         arquivo.write(escrita+"@_@")
     print(Fore.GREEN + "Finalizada a ordem de serviço e feito o BKP!")
     arquivo.close()
@@ -186,11 +209,16 @@ def alterar_os(conexao):
     cursor = conexao.cursor()
     
     while(True):
-        cls()
-        print(Fore.CYAN + """
-        ========= Modificação de O.S. =========""")
-        num_os = input("Qual o número da O.S. a ser modificada? ")
+        while(True):   
+            cls()
+            print(Fore.CYAN + """
+            ========= Modificação de O.S. =========""")
+            num_os = input("Qual o número da O.S. a ser modificada? ")
+            validacao = validacao_os(num_os)
 
+            if(validacao == 0):
+                break
+        
         if(isnumber(num_os) ):
             num_os = int(num_os)
             break
@@ -199,14 +227,6 @@ def alterar_os(conexao):
             print("Digite somente números! ", end="")
             op_invalida()
 
-    # sql = f"""
-    # SELECT servicos.rowid, user.nome, cliente.nome, servicos.problema, servicos.solucao, 
-    # servicos.data_de_fechamento, servicos.valor
-    # FROM servicos INNER JOIN user
-    # ON servicos.iduser = user.rowid
-    # INNER JOIN cliente
-    # ON servicos.idcli = cliente.rowid
-    # """    
     sql = f"""
     SELECT 
     rowid, idcli, iduser, problema, solucao, data_de_fechamento, valor
@@ -216,7 +236,7 @@ def alterar_os(conexao):
 
     
 
-    print(lista[0])
+
     
     while(True):
         update = input("""O que deseja modificar? 
@@ -357,18 +377,34 @@ def relatorio_os_mes(conexao):
     for i in range(0, len(lista)):
         posicao = str(lista[i])
         if(posicao[8:10]== mes):
-           print(f"    |{posicao[1]} |\t|{posicao[25:-2]:<8}   |\t|{posicao[5:21]:>15}|") 
+           print(f"    |{posicao[1]} |\t|{posicao[25:-2]:<5}|\t|{posicao[5:21]:>15}|") 
 
     continuar()
 
 
 
 
-def verificacao_os():
+def validacao_os(num_os):
     conexao = sqlite3.connect("infoLoja.sqlite")
     cursor = conexao.cursor()
+    if(isnumber(num_os)):
+        num_os = int(num_os)
+
 
     sql = "SELECT rowid, * FROM servicos"
     cursor.execute(sql)
 
     lista = cursor.fetchall()
+ 
+    for i in range(0, len(lista)):
+        if(num_os == int(f"{lista[i][0]:>1}")):
+            # print("O.S. inexitente!! ", end="")
+            # continuar()
+            # print("Oi")
+            return 0
+        
+    else:
+            print("O.S. inexitente!! ", end="")
+            continuar()
+            print()
+            return 1

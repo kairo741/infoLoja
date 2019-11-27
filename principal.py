@@ -63,7 +63,7 @@ while(True):
                         elif(opcao == "3"):
                             cls()
                             user.update_usuario(conexao)
-                            continuar()
+                            
 
                         #Escolhida a opção que entra no menu de listar usuários
                         elif(opcao == "4"):

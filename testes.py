@@ -27,4 +27,9 @@ conexao = sqlite3.connect("infoLoja.sqlite")
 # cliente.excluir_tabela(conexao)
 # cliente.criarTabelaCliente(conexao)
 
-cliente.excluir_cliente(conexao)
+# cliente.excluir_cliente(conexao)
+servicos.finalizar_os(conexao)
+
+
+num_os = input("Ola ")
+servicos.validacao_os(num_os)
