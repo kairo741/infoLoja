@@ -83,7 +83,7 @@ def fechar_os(conexao):
     cursor.execute(sql4)
     conexao.commit()
     print(Fore.RED + "Dados inseridos com sucesso!")
-
+    continuar()
 
 
 

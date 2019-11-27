@@ -106,38 +106,45 @@ while(True):
                         if(opcao == "1"):
                             cls()
                             servicos.inserir_os(conexao)
+                        
 
-                        #Quando escolhida a opção de Alterar OSs
                         elif(opcao == "2"):
+                            cls()
+                            servicos.fechar_os(conexao)
+                            
+                            
+                        
+                        #Quando escolhida a opção de Alterar OSs
+                        elif(opcao == "3"):
                             cls()
                             servicos.alterar_os(conexao)
 
                         #Se escolhida a opção de Ler OS
-                        elif(opcao == "3"):
+                        elif(opcao == "4"):
                             cls()
                             servicos.visualizar_os()
                         
 
                         #Se escolhida a opção de finalizar ordem de serviço
-                        elif(opcao == "4"):
+                        elif(opcao == "5"):
                             cls()
                             servicos.finalizar_os(conexao)
                         
 
                         #Opção dos relatórios de OSs mensal
-                        elif(opcao == "5"):
+                        elif(opcao == "6"):
                             cls()
                             servicos.relatorio_os_mes(conexao)
 
 
 
                         #Opção para voltar do MENU DE OSs
-                        elif(opcao == "6"):
+                        elif(opcao == "7):
                             break
 
 
                         #Opção para sair do sistema
-                        elif(opcao == "7"):
+                        elif(opcao == "8"):
                             sair()
 
                         #Se digitada uma opção inválida
@@ -172,6 +179,16 @@ while(True):
                         elif(opcao == "4"):
                             cls()
                             cliente.excluir_cliente(conexao)
+
+
+                        #Opção de volta ao menu anterior do sistema
+                        elif(opcao == "5"):
+                            break
+                        
+                        
+                        #Opção de sair do sistema
+                        elif(opcao == "6"):
+                            sair()
 
 
                 #Opção de sair do sistema

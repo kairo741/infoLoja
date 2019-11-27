@@ -42,12 +42,13 @@ def menu_os():
     print(Fore.CYAN + """
     = Controle de ordem de serviços (O.S.) =""","""
     1. Criar ordem de serviço
-    2. Alterar ordem de serviço
-    3. Ler ordem de serviço
-    4. Finalizar ordem de serviço
-    5. Relatório de ordem de serviços criadas no mês
-    6. Voltar
-    7. Sair""", Fore.CYAN + """
+    2. Fechar ordem de serviço
+    3. Alterar ordem de serviço
+    4. Ler ordem de serviço
+    5. Finalizar ordem de serviço
+    6. Relatório de ordem de serviços criadas no mês
+    7. Voltar
+    8. Sair""", Fore.CYAN + """
     ========================================""")
 
 def menu_cliente():
