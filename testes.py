@@ -15,9 +15,16 @@ conexao = sqlite3.connect("infoLoja.sqlite")
 # user.excluir_usuario(conexao)
 # servicos.alterar_os(conexao)
 
-cliente.listar_cliente(conexao)
+# cliente.listar_cliente(conexao)
 
 # senha = hashlib.md5(b"Kairo")
 # senha = senha.digest()
 # print(senha)
-servicos.relatorio_os_mes(conexao)
+# servicos.relatorio_os_mes(conexao)
+
+
+
+# cliente.excluir_tabela(conexao)
+# cliente.criarTabelaCliente(conexao)
+
+cliente.excluir_cliente(conexao)

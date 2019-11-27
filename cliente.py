@@ -1,7 +1,7 @@
 import sqlite3
 from colorama import Fore, init, Back
 import time
-
+from funcoes import continuar, sair, isnumber, op_invalida, cls
 #Código para semrpe resetar a cor a cada print
 init(autoreset=True)
 
@@ -15,7 +15,7 @@ def criarTabelaCliente(conexao):
     #Criando tabela "cliente"
     sql = '''CREATE TABLE IF NOT EXISTS cliente(
             nome TEXT NOT NULL,
-            cpf TEXT NOT NULL,
+            cpf TEXT NOT NULL UNIQUE,
             rg TEXT,
             celular TEXT NOT NULL,
             rua TEXT NOT NULL,
@@ -84,6 +84,8 @@ def listar_cliente(conexao):
         else:
             print(f'{i[0]}\t', f'{i[1]:<13}\t\t',f'{i[2]:<13}\t\t', f'{i[3]:<13}')
 
+
+    continuar()
 
 # # Algoritmo para dar UPDATE em um cliente
 # def update_cliente(conexao):
@@ -178,63 +180,63 @@ def listar_cliente(conexao):
 
 
 # # Algoritmo para excluir cliente
-# def excluir_cliente(conexao):
-#     cursor = conexao.cursor()
+def excluir_cliente(conexao):
+    cursor = conexao.cursor()
 
-#     while(True):
-#         cls()
-#         print(Fore.CYAN + """
-#     ========= Exclusão de cliente =========""")
-#         rowid = input("Qual o ID do cliente que deseja excluir? ")
+    while(True):
+        cls()
+        print(Fore.CYAN + """
+    ========= Exclusão de clientes =========""")
+        rowid = input("Qual o ID do cliente que deseja excluir? ")
 
-#         if(isnumber(rowid)):
-#             rowid = int(rowid)
-#             break
+        if(isnumber(rowid)):
+            rowid = int(rowid)
+            break
 
-#         else:
-#             print("Apenas números de IDs, ", end="")
-#             op_invalida()
+        else:
+            print("Apenas números de IDs, ", end="")
+            op_invalida()
 
-#     # Select dos atributos para serem usados para a confirmação
-#     sql = """
-#     SELECT nome, login,senha FROM cliente
-#     WHERE rowid = {} 
-#     """.format(rowid)
-#     cursor.execute(sql)
-#     lista = cursor.fetchall()
+    # Select dos atributos para serem usados para a confirmação
+    sql = """
+    SELECT nome, cpf, rowid FROM cliente
+    WHERE rowid = {} 
+    """.format(rowid)
+    cursor.execute(sql)
+    lista = cursor.fetchall()
+    print(lista)
 
-#     excluir = input(
-#         f'Deseja excluir o usuário "{Fore.RED}{lista[0][0]}{Fore.RESET}" que tem o login "{Fore.RED}{lista[0][1]}{Fore.RESET}"?(S/N) ')
-#     excluir = excluir.lower()
+    excluir = input(f'Deseja excluir o cliente "{Fore.RED}{lista[0][0]}{Fore.RESET}" que tem o CPF "{Fore.RED}{lista[0][1]}{Fore.RESET}"?(S/N) ')
+    excluir = excluir.lower()
 
-#     if (excluir == 's'):
-#         while(True):
-#             confirmar = input("Insira a senha para a exclusão: ")
-#             if(confirmar == lista[0][2]):
-#                 print(Fore.GREEN+"Excluindo", end='', flush=True)
-#                 for i in range(5):
-#                     print(Fore.GREEN + '.', end='', flush=True)
-#                     time.sleep(0.5)
+    if (excluir == 's'):
+        while(True):
+            confirmar = input("Confirme o ID do cliente, para a exclusão: ")
+            if(confirmar == str(lista[0][2])):
+                print(Fore.GREEN+"Excluindo", end='', flush=True)
+                for i in range(5):
+                    print(Fore.GREEN + '.', end='', flush=True)
+                    time.sleep(0.5)
 
-#                 print("")
+                print("")
 
-#                 sql_excluir = """
-#                     DELETE FROM user
-#                     WHERE rowid = {}
-#                     """.format(rowid)
-#                 cursor.execute(sql_excluir)
-#                 conexao.commit()
+                sql_excluir = """
+                    DELETE FROM user
+                    WHERE rowid = {}
+                    """.format(rowid)
+                cursor.execute(sql_excluir)
+                conexao.commit()
 
-#                 print(Fore.RED + "Você excluiu o Usuário {}!".format(rowid))
-#                 break
+                print(Fore.RED + "Você excluiu o cliente {}!".format(rowid))
+                break
 
-#             else:
-#                 print(Fore.RED + "Senha incorreta")
+            else:
+                print(Fore.RED + "ID incorreta!")
 
-#             continuar = input("Deseja continuar (S/N)? ")
-#             continuar = continuar.lower()
-#             if (continuar == 'n'):
-#                 sair()
+            continuar = input("Deseja continuar (S/N)? ")
+            continuar = continuar.lower()
+            if (continuar == 'n'):
+                sair()
 
 
 # def inserir_testes(conexao):
@@ -250,3 +252,16 @@ def listar_cliente(conexao):
 #     '''
 #     cursor.execute(sql)
 #     conexao.commit()
+
+
+
+
+def excluir_tabela(conexao):
+    cursor = conexao.cursor()
+
+    sql = """
+    DROP TABLE cliente"""
+
+    cursor.execute(sql)
+
+    print(Fore.RED+"Tabela Excluida!")

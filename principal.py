@@ -144,13 +144,36 @@ while(True):
                         else:
                             op_invalida()
 
-                #Se escolhida a opção 2, que entra no menu de OSs
+                #Se escolhida a opção 3 que entra no menu de controle de clientes
                 elif(opcao == "3"):
-                    cls()
-                    menus.menu_cliente()
+                    while(True):
+                        cls()
+                        menus.menu_cliente()
+                        opcao = input("Insira a opção: ")
 
+                        #Opção de cadastrar clientes na tabela "cliente"
+                        if(opcao == "1"):
+                            cls()
+                            cliente.inserirCliente(conexao)
 
+                        #Opção de listar todos os clientes cadastrados na tabela 'cliente'
+                        elif(opcao == "2"):
+                            cls()
+                            cliente.listar_cliente(conexao)
                     
+
+                        elif(opcao == "3"):
+                            cls()
+                            print("funcao de alterar cliente")
+                            continuar()
+
+
+                        #Opção de excluir o registro de cliente, da tabela "cliente"
+                        elif(opcao == "4"):
+                            cls()
+                            cliente.excluir_cliente(conexao)
+
+
                 #Opção de sair do sistema
                 elif(opcao == "4"):
 
