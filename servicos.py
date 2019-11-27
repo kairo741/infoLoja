@@ -362,3 +362,13 @@ def relatorio_os_mes(conexao):
     continuar()
 
 
+
+
+def verificacao_os():
+    conexao = sqlite3.connect("infoLoja.sqlite")
+    cursor = conexao.cursor()
+
+    sql = "SELECT rowid, * FROM servicos"
+    cursor.execute(sql)
+
+    lista = cursor.fetchall()

@@ -265,3 +265,128 @@ def excluir_tabela(conexao):
     cursor.execute(sql)
 
     print(Fore.RED+"Tabela Excluida!")
+
+
+def alterar_cliente(conexao):
+    cursor = conexao.cursor()
+
+    while(True):
+        cls()
+        print(Fore.CYAN + """
+        ======== Modificação de Cliente ========""")
+        rowid = input("Qual o ID do cliente a ser modificado? ")
+
+        if(isnumber(rowid)):
+            num_os = int(rowid)
+            break
+
+        else:
+            print("Digite somente números! ", end="")
+            op_invalida()
+
+    
+    sql = f"""
+    SELECT 
+    rowid, nome, cpf, rg, celular
+    FROM cliente  WHERE rowid = {num_os} """
+    cursor.execute(sql)
+    lista = cursor.fetchall()
+
+    print(lista[0])
+
+    while(True):
+        update = input("""O que deseja modificar? 
+        (Nome, CPF, RG, Celular)
+        
+        """)
+        update = update.lower()
+
+        if(update == "nome"):
+            no_sql = "nome"
+            update_x = "o Nome do Cliente"
+            atual = lista[0][1]
+            break
+
+        elif(update == "cpf"):
+            no_sql = "cpf"
+            update_x = "o CPF do Técnico"
+            atual = lista[0][2]
+            break
+
+        elif(update == "rg"):
+            no_sql = "rg"
+            update_x = "o RG do cliente"
+            atual = lista[0][3]
+            break
+
+
+        elif(update == "celular"):
+            no_sql = "celular"
+            update_x = "o Celular do cliente"
+            atual = str(lista[0][4])
+            break
+
+        else:
+            op_invalida()
+            cls()
+            print(Fore.CYAN + """
+        ======== Modificação de Cliente ========""")
+
+    update = input(
+        f"Deseja mesmo alterar {update_x} da {Fore.RED}O.S. {lista[0][0]}{Fore.RESET}? (S/N) ")
+    update = update.lower()
+
+    if(update == "s"):
+
+        while(True):
+           
+            novo = input(f"Insira {update_x} novo(a): ")
+            while(True):
+                cls()
+                print(Fore.CYAN + f"""
+    ========= Modificando {update_x} =========""")
+
+                print(
+                    f"Lembre-se {update_x} altual é '{Fore.CYAN}{atual}{Fore.RESET}'!")
+
+                print(f"Voce digitou: {novo}")
+                confirmar = input("Confirme {}: ".format(update_x))
+
+                update = input(f"Deseja mesmo alterar {update_x}? (S/N) ")
+                update = update.lower()
+                if(update == "n"):
+                    cls()
+                    break
+                if(confirmar == novo):
+
+                        print(Fore.GREEN + "Alterando", end='', flush=True)
+                        for i in range(5):
+                            print(Fore.GREEN + '.', end='', flush=True)
+                            time.sleep(0.5)
+                        print()
+
+                sql = f"""
+                UPDATE servicos
+                SET {no_sql} = "{confirmar}"
+                WHERE rowid = {rowid} """
+                cursor.execute(sql)
+                conexao.commit()
+
+                print(f"Você alterou {update_x} do Cliente {rowid}!")
+                break
+
+            else:
+                print("Confirmação incorreta!")
+                continuar = input("Deseja continuar (S/N)? ")
+                continuar = continuar.lower()
+
+                if (continuar == 'n'):
+                    sair()
+
+            continuar = input("Deseja alterar novamente (S/N)? ")
+            continuar = continuar.lower()
+            if (continuar == 'n'):
+                break
+
+    else:
+        sair()

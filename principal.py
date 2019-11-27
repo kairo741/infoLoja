@@ -139,7 +139,7 @@ while(True):
 
 
                         #Opção para voltar do MENU DE OSs
-                        elif(opcao == "7):
+                        elif(opcao == "7"):
                             break
 
 
@@ -171,8 +171,7 @@ while(True):
 
                         elif(opcao == "3"):
                             cls()
-                            print("funcao de alterar cliente")
-                            continuar()
+                            cliente.alterar_cliente(conexao)
 
 
                         #Opção de excluir o registro de cliente, da tabela "cliente"
