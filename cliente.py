@@ -251,7 +251,7 @@ def alterar_cliente(conexao):
         ======== Modificação de Cliente ========""")
 
     update = input(
-        f"Deseja mesmo alterar {update_x} da {Fore.RED}O.S. {lista[0][0]}{Fore.RESET}? (S/N) ")
+        f"Deseja mesmo alterar {update_x} do {Fore.RED}cliente {lista[0][0]}{Fore.RESET}? (S/N) ")
     update = update.lower()
 
     if(update == "s"):

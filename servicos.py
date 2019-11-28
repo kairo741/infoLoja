@@ -61,6 +61,9 @@ def inserir_os(conexao):
 
 #Função para fechar uma OS:
 def fechar_os(conexao):
+    cls()
+    print(Fore.CYAN + """
+            ============ Fechar de O.S. ============""")
     num_os = int(input("Insira o número da O.S. que deseja finalizar: "))
     solucao = input("Insira a solução: ")
     data_de_fechamento = datetime.now()
